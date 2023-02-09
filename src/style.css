@@ -1,0 +1,74 @@
+.card {
+  display: block;
+  margin: 50px auto;
+  padding: 10px 20px 20px 20px;
+  max-width: 600px;
+  font-family: "Sofia Sans Semi Condensed", sans-serif;
+}
+
+.content {
+  display: block;
+  margin: 10px 30px 0 30px;
+}
+
+form {
+  padding: 0 12px;
+}
+.search-bar {
+  width: 50%;
+}
+.card-body .search-button {
+  line-height: 1;
+}
+
+.today h1 {
+  font-size: 38px;
+  text-transform: capitalize;
+}
+
+.current-temp {
+  text-align: right;
+}
+.tempConversion {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(30, 30, 159);
+}
+#celcius-button,
+#fahrenheit-button {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(30, 30, 159);
+  padding: 0 0 0 0;
+  border: none;
+}
+.todays-icon {
+  color: rgb(30, 30, 159);
+  margin: 0 0 8px 0;
+}
+.todays-forecast {
+  text-align: center;
+}
+.five-day-forecast {
+  margin: 0 auto;
+  padding-top: 8px;
+}
+.col {
+  text-align: center;
+  font-size: 15px;
+  line-height: 30px;
+}
+.five-day-forecast h3 {
+  font-size: 15px;
+  font-weight: bold;
+}
+.sun-icon,
+.cloud-sun-icon,
+.cloud-icon,
+.sunshower-icon,
+.thunder-icon {
+  color: rgb(68, 105, 153);
+  font-size: 26px;
+  margin: 5px;
+}

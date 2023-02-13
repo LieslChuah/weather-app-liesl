@@ -81,27 +81,28 @@ function getSearchedCity(event) {
 }
 
 function getWeatherData(city) {
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
-  let apiKey = "46fac47dd8b8fa26d1b6852218ad3dfe";
-  let unit = "metric";
-  let apiUrl = `${apiEndpoint}?q=${city}&appid=${apiKey}&units=${unit}`;
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
+  let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
+  let apiUrl = `${apiEndpoint}?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayData);
 }
 
 function displayData(response) {
-  document.querySelector("#city").innerHTML = response.data.name;
+  document.querySelector("#city").innerHTML = response.data.city;
   document.querySelector("#current-temp").innerHTML = Math.round(
-    response.data.main.temp
+    response.data.temperature.current
   );
+  document.querySelector("#todays-description").innerHTML =
+    response.data.condition.description;
+  console.log(response);
 }
 
 function retrieveLocation(position) {
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather";
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let unit = "metric";
-  let apiKey = "46fac47dd8b8fa26d1b6852218ad3dfe";
-  let url = `${apiEndpoint}?lat=${lat}&lon=${lon}&units=${unit}&appid=${apiKey}`;
+  let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
+  let url = `${apiEndpoint}&lat=${lat}&lon=${lon}&units=metric&key=${apiKey}`;
   axios.get(url).then(displayData);
 }
 function getCurrentPosition(event) {

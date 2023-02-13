@@ -60,6 +60,9 @@ footer {
 .todays-icon {
   color: rgb(56, 87, 126);
 }
+#todays-description::first-letter {
+  text-transform: capitalize;
+}
 .five-day-forecast {
   line-height: 30px;
   text-align: center;

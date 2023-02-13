@@ -35,19 +35,19 @@
               type="text"
               id="search-bar-input"
               placeholder="Search for city"
-              class="search-bar"
+              class="search-bar col-6"
               autocomplete="off"
             />
             <button
               type="submit"
-              class="btn btn-secondary search-button"
+              class="btn btn-secondary search-button col-2"
               id="search-button"
             >
               Search
             </button>
             <button
               type="submit"
-              class="btn btn-secondary search-button"
+              class="btn btn-secondary search-button col-3.5"
               id="current-location-button"
             >
               Current Location
@@ -64,7 +64,7 @@
             <div class="col-4 current-temp">
               <h1>
                 <span id="current-temp">21</span>
-                <span class="tempConversion">
+                <span class="temp-conversion">
                   <button
                     type="button"
                     class="btn btn-link"
@@ -82,7 +82,8 @@
                   </button>
                 </span>
               </h1>
-              <i class="fa-solid fa-cloud-rain"></i> Chance of rain: 5%<br />
+              <i class="fa-solid fa-cloud-rain"></i> Chance of rain:
+              <span id="rain-percentage">5%</span><br />
               <i class="fa-solid fa-box-tissue"></i> Pollen count: High
             </div>
             <div class="col-3 todays-forecast">
@@ -96,39 +97,46 @@
 
           <div class="row align-items-center five-day-forecast">
             <div class="col">
-              <h3>Wednesday</h3>
-              <i class="fa-solid fa-sun sun-icon"></i> <br />
+              <h2>Wednesday</h2>
+              <i class="fa-solid fa-sun sun-icon forecast-icon"></i> <br />
               15° / 24°
             </div>
             <div class="col">
-              <h3>Thursday</h3>
-              <i class="fa-solid fa-cloud-sun cloud-sun-icon"></i> <br />
+              <h2>Thursday</h2>
+              <i class="fa-solid fa-cloud-sun cloud-sun-icon forecast-icon"></i>
+              <br />
               15° / 24°
             </div>
             <div class="col">
-              <h3>Friday</h3>
-              <i class="fa-solid fa-cloud cloud-icon"></i> <br />
+              <h2>Friday</h2>
+              <i class="fa-solid fa-cloud cloud-icon forecast-icon"></i> <br />
               15° / 24°
             </div>
             <div class="col">
-              <h3>Saturday</h3>
-              <i class="fa-solid fa-cloud-sun-rain sunshower-icon"></i> <br />
+              <h2>Saturday</h2>
+              <i
+                class="fa-solid fa-cloud-sun-rain sunshower-icon forecast-icon"
+              ></i>
+              <br />
               15° / 24°
             </div>
             <div class="col">
-              <h3>Sunday</h3>
-              <i class="fa-solid fa-cloud-bolt thunder-icon"></i> <br />
+              <h2>Sunday</h2>
+              <i class="fa-solid fa-cloud-bolt thunder-icon forecast-icon"></i>
+              <br />
               15° / 24°
             </div>
           </div>
         </div>
       </div>
       <footer>
-        Coded by Liesl Chuah.
+        Coded by Liesl Chuah.<br />
         <a href="https://github.com/LieslChuah/weather-app-liesl"
           >Open-sourced on GitHub.</a
         >
-        Hosted on Netlify.
+        <a href="https://frolicking-sunshine-461b84.netlify.app/"
+          >Hosted on Netlify.</a
+        >
       </footer>
       <script src="src/app.js"></script>
     </div>

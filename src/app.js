@@ -92,6 +92,12 @@ function displayData(response) {
   document.querySelector("#current-temp").innerHTML = Math.round(
     response.data.temperature.current
   );
+  document.querySelector("#feels-like").innerHTML = Math.round(
+    response.data.temperature.feels_like
+  );
+  document.querySelector("#wind").innerHTML = Math.round(
+    response.data.wind.speed
+  );
   document
     .querySelector("#todays-icon")
     .setAttribute("src", response.data.condition.icon_url);

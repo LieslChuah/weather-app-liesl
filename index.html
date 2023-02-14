@@ -28,7 +28,7 @@
   <body>
     <div class="container">
       <div class="card">
-        <form id="search-bar">
+        <form id="search-form">
           <i class="fa-solid fa-magnifying-glass"> </i>
           <input
             type="text"
@@ -55,12 +55,12 @@
 
         <div class="content">
           <div class="row">
-            <div class="col-5 today">
+            <div class="col-6 today">
               <h1 id="city">Melbourne</h1>
               <span id="day-hour"></span><br />
               <span id="todays-date"></span>
             </div>
-            <div class="col-4 current-temp">
+            <div class="col-3 current-temp">
               <h1>
                 <span id="current-temp">21</span>
                 <span class="temp-conversion">
@@ -81,9 +81,10 @@
                   </button>
                 </span>
               </h1>
-              <i class="fa-solid fa-cloud-rain"></i> Chance of rain:
-              <span id="rain-percentage">5%</span><br />
-              <i class="fa-solid fa-box-tissue"></i> Pollen count: High
+              <p class="todays-conditions-p">
+                Feels Like: <span id="feels-like">23</span>°<br />
+                Wind: <span id="wind">20</span>km/h
+              </p>
             </div>
             <div class="col-3 todays-forecast">
               <img

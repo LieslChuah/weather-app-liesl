@@ -26,7 +26,7 @@ footer {
   padding: 35px 20px 35px 20px;
   max-width: 600px;
 }
-#search-bar {
+#search-form {
   display: block;
 }
 .search-button {
@@ -37,9 +37,6 @@ footer {
 .content {
   display: block;
   margin: 10px 20px 0 20px;
-}
-.current-temp {
-  text-align: right;
 }
 .temp-conversion {
   font-size: 12px;

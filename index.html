@@ -28,32 +28,31 @@
   <body>
     <div class="container">
       <div class="card">
-        <div class="card-body">
-          <form id="search-bar">
-            <i class="fa-solid fa-magnifying-glass"> </i>
-            <input
-              type="text"
-              id="search-bar-input"
-              placeholder="Search for city"
-              class="search-bar col-6"
-              autocomplete="off"
-            />
-            <button
-              type="submit"
-              class="btn btn-secondary search-button col-2"
-              id="search-button"
-            >
-              Search
-            </button>
-            <button
-              type="submit"
-              class="btn btn-secondary search-button col-3.5"
-              id="current-location-button"
-            >
-              Current Location
-            </button>
-          </form>
-        </div>
+        <form id="search-bar">
+          <i class="fa-solid fa-magnifying-glass"> </i>
+          <input
+            type="text"
+            id="search-bar-input"
+            placeholder="Search for city"
+            class="search-bar col-6"
+            autocomplete="off"
+          />
+          <button
+            type="submit"
+            class="btn btn-secondary search-button col-2"
+            id="search-button"
+          >
+            Search
+          </button>
+          <button
+            type="submit"
+            class="btn btn-secondary search-button col-3.5"
+            id="current-location-button"
+          >
+            Current Location
+          </button>
+        </form>
+
         <div class="content">
           <div class="row">
             <div class="col-5 today">
@@ -87,12 +86,17 @@
               <i class="fa-solid fa-box-tissue"></i> Pollen count: High
             </div>
             <div class="col-3 todays-forecast">
-              <h1><i class="fa-solid fa-cloud-sun todays-icon"></i></h1>
-              <span id="todays-description">Cloudy</span><br />
-              <strong
-                ><span id="todays-low">15</span>° /
-                <span id="todays-low">24</span>°</strong
-              >
+              <img
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
+                id="todays-icon"
+              />
+              <p class="todays-forecast-p">
+                <span id="todays-description">Cloudy</span><br />
+                <strong
+                  ><span id="todays-low">15</span>° /
+                  <span id="todays-low">24</span>°</strong
+                >
+              </p>
             </div>
           </div>
 

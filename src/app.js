@@ -92,6 +92,9 @@ function displayData(response) {
   document.querySelector("#current-temp").innerHTML = Math.round(
     response.data.temperature.current
   );
+  document
+    .querySelector("#todays-icon")
+    .setAttribute("src", response.data.condition.icon_url);
   document.querySelector("#todays-description").innerHTML =
     response.data.condition.description;
   console.log(response);
@@ -99,10 +102,10 @@ function displayData(response) {
 
 function retrieveLocation(position) {
   let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
+  let lon = position.data.coordinates.longitude;
+  let lat = position.data.coordinates.latitude;
   let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
-  let url = `${apiEndpoint}&lat=${lat}&lon=${lon}&units=metric&key=${apiKey}`;
+  let url = `${apiEndpoint}?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(url).then(displayData);
 }
 function getCurrentPosition(event) {

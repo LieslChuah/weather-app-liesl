@@ -10,19 +10,15 @@ function formatDate(date) {
     "Sunday",
   ];
   let day = days[date.getDay()];
-
   let hours = date.getHours();
   if (hours < 10) {
     hours = `0${hours}`;
   }
-
   let minutes = date.getMinutes();
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-
   let dayDate = date.getDate();
-
   let months = [
     "January",
     "February",
@@ -38,7 +34,6 @@ function formatDate(date) {
     "December",
   ];
   let month = months[date.getMonth()];
-
   let year = date.getFullYear();
 
   let dayHour = document.querySelector("#day-hour");
@@ -82,28 +77,29 @@ function getWeatherData(city) {
 }
 
 function displayData(response) {
-  document.querySelector("#city").innerHTML = response.data.city;
+  let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#current-temp");
+  let feelsLikeElement = document.querySelector("#feels-like");
+  let windElement = document.querySelector("#wind");
+  let iconElement = document.querySelector("#todays-icon");
+  let desciptionElement = document.querySelector("#todays-description");
+
   celciusTemp = response.data.temperature.current;
+
+  cityElement.innerHTML = response.data.city;
   temperatureElement.innerHTML = Math.round(celciusTemp);
-  document.querySelector("#feels-like").innerHTML = Math.round(
-    response.data.temperature.feels_like
-  );
-  document.querySelector("#wind").innerHTML = Math.round(
-    response.data.wind.speed
-  );
-  document
-    .querySelector("#todays-icon")
-    .setAttribute("src", response.data.condition.icon_url);
-  document.querySelector("#todays-description").innerHTML =
-    response.data.condition.description;
+  feelsLikeElement.innerHTML = Math.round(response.data.temperature.feels_like);
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  iconElement.setAttribute("src", response.data.condition.icon_url);
+  desciptionElement.innerHTML = response.data.condition.description;
+
   console.log(response);
 }
 
 function retrieveLocation(position) {
   let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
-  //  let lon = position.data.coordinates.longitude;
-  //  let lat = position.data.coordinates.latitude;
+  let lon = position.data.coordinates.longitude;
+  let lat = position.data.coordinates.latitude;
   let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
   let url = `${apiEndpoint}?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(url).then(displayData);

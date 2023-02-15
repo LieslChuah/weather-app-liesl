@@ -29,9 +29,14 @@ footer {
 #search-form {
   display: block;
 }
+#search-bar-input {
+  border: 2px solid rgb(56, 87, 126);
+  border-radius: 3px;
+}
 .search-button {
   line-height: 1;
   padding: 16px auto;
+  border: 2px solid rgb(56, 87, 126);
   background-color: rgb(56, 87, 126);
 }
 .content {
@@ -39,20 +44,20 @@ footer {
   margin: 10px 20px 0 20px;
 }
 .temp-conversion {
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 18px;
   position: relative;
   top: -12px;
-  color: rgb(30, 30, 159);
+  color: black;
 }
-#celcius-button,
-#fahrenheit-button {
+#celcius-link,
+#fahrenheit-link {
   text-decoration: none;
-  font-size: 18px;
   font-weight: bold;
+  color: black;
+}
+#celcius-link.active,
+#fahrenheit-link.active {
   color: rgb(30, 30, 159);
-  padding: 0 0 0 0;
-  border: none;
 }
 .todays-forecast {
   text-align: center;

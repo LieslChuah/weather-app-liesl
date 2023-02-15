@@ -46,29 +46,23 @@ function formatDate(date) {
   dayHour.innerHTML = `${day} ${hours}:${minutes}`;
   todaysDate.innerHTML = `${dayDate} ${month} ${year}`;
 }
-let date = new Date();
-formatDate(date);
 
-function convertToFahrenheit(event) {
+function displayFahrenheit(event) {
   event.preventDefault();
-  let celciusTemp = document.querySelector("#current-temp");
-  let fahrenheitTemp = Math.round((celciusTemp.innerHTML * 9) / 5 + 32);
-  celciusTemp.innerHTML = `${fahrenheitTemp}`;
-
-  fahrenheit.removeEventListener("click", convertToFahrenheit);
-
-  function refreshTemp() {
-    let refreshedTemp = Math.round(((fahrenheitTemp - 32) * 5) / 9);
-    celciusTemp.innerHTML = `${refreshedTemp}`;
-
-    fahrenheit.addEventListener("click", convertToFahrenheit);
-  }
-  let celcius = document.querySelector("#celcius-button");
-  celcius.addEventListener("click", refreshTemp);
+  let temperatureElement = document.querySelector("#current-temp");
+  let fahrenheitTemp = Math.round((celciusTemp * 9) / 5 + 32);
+  temperatureElement.innerHTML = fahrenheitTemp;
+  fahrenheit.classList.remove("active");
+  celcius.classList.add("active");
 }
 
-let fahrenheit = document.querySelector("#fahrenheit-button");
-fahrenheit.addEventListener("click", convertToFahrenheit);
+function displayCelcius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temp");
+  temperatureElement.innerHTML = Math.round(celciusTemp);
+  celcius.classList.remove("active");
+  fahrenheit.classList.add("active");
+}
 
 function getSearchedCity(event) {
   event.preventDefault();
@@ -89,9 +83,9 @@ function getWeatherData(city) {
 
 function displayData(response) {
   document.querySelector("#city").innerHTML = response.data.city;
-  document.querySelector("#current-temp").innerHTML = Math.round(
-    response.data.temperature.current
-  );
+  let temperatureElement = document.querySelector("#current-temp");
+  celciusTemp = response.data.temperature.current;
+  temperatureElement.innerHTML = Math.round(celciusTemp);
   document.querySelector("#feels-like").innerHTML = Math.round(
     response.data.temperature.feels_like
   );
@@ -108,8 +102,8 @@ function displayData(response) {
 
 function retrieveLocation(position) {
   let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
-  let lon = position.data.coordinates.longitude;
-  let lat = position.data.coordinates.latitude;
+  //  let lon = position.data.coordinates.longitude;
+  //  let lat = position.data.coordinates.latitude;
   let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
   let url = `${apiEndpoint}?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(url).then(displayData);
@@ -119,10 +113,22 @@ function getCurrentPosition(event) {
   navigator.geolocation.getCurrentPosition(retrieveLocation);
 }
 
-getWeatherData("Melbourne");
+let celciusTemp = null;
+
+let fahrenheit = document.querySelector("#fahrenheit-link");
+fahrenheit.addEventListener("click", displayFahrenheit);
+
+let celcius = document.querySelector("#celcius-link");
+celcius.addEventListener("click", displayCelcius);
+celcius.classList.remove("active");
 
 let searchButton = document.querySelector("#search-button");
 searchButton.addEventListener("click", getSearchedCity);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentPosition);
+
+let date = new Date();
+formatDate(date);
+
+getWeatherData("Melbourne");

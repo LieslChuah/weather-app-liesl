@@ -98,12 +98,13 @@ function displayData(response) {
 
 function retrieveLocation(position) {
   let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
-  let lon = position.data.coordinates.longitude;
-  let lat = position.data.coordinates.latitude;
+  let lon = position.coords.longitude;
+  let lat = position.coords.latitude;
   let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
   let url = `${apiEndpoint}?lon=${lon}&lat=${lat}&key=${apiKey}&units=metric`;
   axios.get(url).then(displayData);
 }
+
 function getCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(retrieveLocation);

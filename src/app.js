@@ -37,59 +37,6 @@ function formatDate(timestamp) {
   Last updated at ${hours}:00`;
 }
 
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  let forecastHTML = `<div class="row align-items-center five-day-forecast">`;
-
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
-      <span class="five-day-forecast-day">${day}</span>
-      <i class="fa-solid fa-sun sun-icon forecast-icon"></i> <br />
-      <span class="five-day-forecast-min"> 15° </span>
-      <span class="five-day-forecast-max"> 24° </span>
-      </div>`;
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
-
-function displayFahrenheit(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temp");
-  let fahrenheitTemp = Math.round((celciusTemp * 9) / 5 + 32);
-  temperatureElement.innerHTML = fahrenheitTemp;
-  fahrenheit.classList.remove("active");
-  celcius.classList.add("active");
-}
-
-function displayCelcius(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temp");
-  temperatureElement.innerHTML = Math.round(celciusTemp);
-  celcius.classList.remove("active");
-  fahrenheit.classList.add("active");
-}
-
-function getSearchedCity(event) {
-  event.preventDefault();
-  let searchBarInput = document.querySelector("#search-bar-input").value;
-  if (searchBarInput) {
-    getWeatherData(searchBarInput);
-  } else {
-    alert("Please enter a city");
-  }
-}
-
-function getWeatherData(city) {
-  let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
-  let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
-  let apiUrl = `${apiEndpoint}?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayData);
-}
-
 function displayData(response) {
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#current-temp");
@@ -112,6 +59,23 @@ function displayData(response) {
   console.log(response);
 }
 
+function getWeatherData(city) {
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
+  let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
+  let apiUrl = `${apiEndpoint}?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayData);
+}
+
+function getSearchedCity(event) {
+  event.preventDefault();
+  let searchBarInput = document.querySelector("#search-bar-input").value;
+  if (searchBarInput) {
+    getWeatherData(searchBarInput);
+  } else {
+    alert("Please enter a city");
+  }
+}
+
 function retrieveLocation(position) {
   let apiEndpoint = "https://api.shecodes.io/weather/v1/current";
   let lon = position.coords.longitude;
@@ -124,6 +88,49 @@ function retrieveLocation(position) {
 function getCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(retrieveLocation);
+}
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  let forecastHTML = `<div class="row align-items-center five-day-forecast">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+      <span class="five-day-forecast-day">${day}</span>
+      <i class="fa-solid fa-sun sun-icon forecast-icon"></i> <br />
+      <span class="five-day-forecast-min"> 15° </span>
+      <span class="five-day-forecast-max"> 24° </span>
+      </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecastData(city) {
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/forecast";
+  let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
+  let apiUrl = `${apiEndpoint}?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayFahrenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temp");
+  let fahrenheitTemp = Math.round((celciusTemp * 9) / 5 + 32);
+  temperatureElement.innerHTML = fahrenheitTemp;
+  fahrenheit.classList.remove("active");
+  celcius.classList.add("active");
+}
+
+function displayCelcius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#current-temp");
+  temperatureElement.innerHTML = Math.round(celciusTemp);
+  celcius.classList.remove("active");
+  fahrenheit.classList.add("active");
 }
 
 let celciusTemp = null;
@@ -143,4 +150,4 @@ currentLocationButton.addEventListener("click", getCurrentPosition);
 
 getWeatherData("Melbourne");
 
-displayForecast();
+getForecastData();

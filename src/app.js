@@ -1,4 +1,5 @@
-function formatDate(date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
   let days = [
     "Sunday",
     "Monday",
@@ -14,10 +15,7 @@ function formatDate(date) {
   if (hours < 10) {
     hours = `0${hours}`;
   }
-  let minutes = date.getMinutes();
-  if (minutes < 10) {
-    minutes = `0${minutes}`;
-  }
+
   let dayDate = date.getDate();
   let months = [
     "January",
@@ -36,10 +34,8 @@ function formatDate(date) {
   let month = months[date.getMonth()];
   let year = date.getFullYear();
 
-  let dayHour = document.querySelector("#day-hour");
-  let todaysDate = document.querySelector("#todays-date");
-  dayHour.innerHTML = `${day} ${hours}:${minutes}`;
-  todaysDate.innerHTML = `${dayDate} ${month} ${year}`;
+  return ` ${day} ${dayDate} ${month} ${year}<br />
+  Last updated at ${hours}:00`;
 }
 
 function displayFahrenheit(event) {
@@ -83,6 +79,7 @@ function displayData(response) {
   let windElement = document.querySelector("#wind");
   let iconElement = document.querySelector("#todays-icon");
   let desciptionElement = document.querySelector("#todays-description");
+  let date = document.querySelector("#date");
 
   celciusTemp = response.data.temperature.current;
 
@@ -92,6 +89,7 @@ function displayData(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
   iconElement.setAttribute("src", response.data.condition.icon_url);
   desciptionElement.innerHTML = response.data.condition.description;
+  date.innerHTML = formatDate(response.data.time * 1000);
 
   console.log(response);
 }
@@ -124,8 +122,5 @@ searchButton.addEventListener("click", getSearchedCity);
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentPosition);
-
-let date = new Date();
-formatDate(date);
 
 getWeatherData("Melbourne");

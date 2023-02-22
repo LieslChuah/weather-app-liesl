@@ -3,10 +3,6 @@ h1 {
   text-transform: capitalize;
   margin: 30px 0 20px 0;
 }
-h2 {
-  font-size: 15px;
-  font-weight: bold;
-}
 footer {
   text-align: center;
   font-family: Arial, sans-serif;
@@ -73,11 +69,19 @@ img#todays-icon {
 #todays-description:first-letter {
   text-transform: capitalize;
 }
-.five-day-forecast {
+.five-day-forecast,
+.five-day-forecast-day {
+  font-size: 16px;
   line-height: 30px;
   text-align: center;
   margin: 0 auto;
-  padding-top: 8px;
+  padding-top: 3px;
+}
+.five-day-forecast-min {
+  opacity: 0.75;
+}
+.five-day-forecast-max {
+  font-weight: bold;
 }
 .forecast-icon {
   color: rgb(68, 105, 153);

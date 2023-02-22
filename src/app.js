@@ -15,7 +15,6 @@ function formatDate(timestamp) {
   if (hours < 10) {
     hours = `0${hours}`;
   }
-
   let dayDate = date.getDate();
   let months = [
     "January",
@@ -36,6 +35,25 @@ function formatDate(timestamp) {
 
   return ` ${day} ${dayDate} ${month} ${year}<br />
   Last updated at ${hours}:00`;
+}
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  let forecastHTML = `<div class="row align-items-center five-day-forecast">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+      <span class="five-day-forecast-day">${day}</span>
+      <i class="fa-solid fa-sun sun-icon forecast-icon"></i> <br />
+      <span class="five-day-forecast-min"> 15° </span>
+      <span class="five-day-forecast-max"> 24° </span>
+      </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 function displayFahrenheit(event) {
@@ -124,3 +142,5 @@ let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentPosition);
 
 getWeatherData("Melbourne");
+
+displayForecast();

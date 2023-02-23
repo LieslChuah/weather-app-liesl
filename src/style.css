@@ -87,4 +87,5 @@ img#todays-icon {
   color: rgb(68, 105, 153);
   font-size: 26px;
   margin: 5px;
+  max-width: 50px;
 }

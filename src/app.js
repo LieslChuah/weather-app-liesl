@@ -37,21 +37,44 @@ function formatDate(timestamp) {
   Last updated at ${hours}:00`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+  let day = date.getDay();
+  return days[day];
+}
+
 function displayForecast(response) {
-  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
   let forecastHTML = `<div class="row align-items-center five-day-forecast">`;
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
-      <span class="five-day-forecast-day">${day}</span>
-      <i class="fa-solid fa-sun sun-icon forecast-icon"></i> <br />
-      <span class="five-day-forecast-min"> 15° </span>
-      <span class="five-day-forecast-max"> 24° </span>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="col">
+      <span class="five-day-forecast-day">${formatDay(forecastDay.time)}</span>
+      <img src="${forecastDay.condition.icon_url}" class="forecast-icon"> <br />
+      <span class="five-day-forecast-min"> ${Math.round(
+        forecastDay.temperature.minimum
+      )}° </span>
+      <span class="five-day-forecast-max"> ${Math.round(
+        forecastDay.temperature.maximum
+      )}° </span>
       </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;

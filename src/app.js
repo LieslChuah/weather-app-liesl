@@ -55,7 +55,6 @@ function formatDay(timestamp) {
 
 function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
-  console.log(response.data.daily);
   let forecast = response.data.daily;
 
   let forecastHTML = `<div class="row align-items-center five-day-forecast">`;

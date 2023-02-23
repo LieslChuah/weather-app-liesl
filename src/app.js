@@ -15,6 +15,13 @@ function formatDate(timestamp) {
   if (hours < 10) {
     hours = `0${hours}`;
   }
+  if (hours < 7 || hours > 20) {
+    let body = document.querySelector("body");
+    body.classList.add("night");
+  } else {
+    let body = document.querySelector("body");
+    body.classList.add("day");
+  }
   let dayDate = date.getDate();
   let months = [
     "January",
@@ -104,7 +111,7 @@ function displayData(response) {
   iconElement.setAttribute("src", response.data.condition.icon_url);
   desciptionElement.innerHTML = response.data.condition.description;
   date.innerHTML = formatDate(response.data.time * 1000);
-
+  console.log(response.data);
   getForecastData(response.data.city);
 }
 

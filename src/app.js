@@ -37,6 +37,33 @@ function formatDate(timestamp) {
   Last updated at ${hours}:00`;
 }
 
+function displayForecast(response) {
+  console.log(response.data.daily);
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  let forecastHTML = `<div class="row align-items-center five-day-forecast">`;
+
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<div class="col">
+      <span class="five-day-forecast-day">${day}</span>
+      <i class="fa-solid fa-sun sun-icon forecast-icon"></i> <br />
+      <span class="five-day-forecast-min"> 15° </span>
+      <span class="five-day-forecast-max"> 24° </span>
+      </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function getForecastData(city) {
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/forecast";
+  let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
+  let apiUrl = `${apiEndpoint}?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function displayData(response) {
   let cityElement = document.querySelector("#city");
   let temperatureElement = document.querySelector("#current-temp");
@@ -56,7 +83,7 @@ function displayData(response) {
   desciptionElement.innerHTML = response.data.condition.description;
   date.innerHTML = formatDate(response.data.time * 1000);
 
-  console.log(response);
+  getForecastData(response.data.city);
 }
 
 function getWeatherData(city) {
@@ -88,32 +115,6 @@ function retrieveLocation(position) {
 function getCurrentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(retrieveLocation);
-}
-
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let days = ["Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-  let forecastHTML = `<div class="row align-items-center five-day-forecast">`;
-
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<div class="col">
-      <span class="five-day-forecast-day">${day}</span>
-      <i class="fa-solid fa-sun sun-icon forecast-icon"></i> <br />
-      <span class="five-day-forecast-min"> 15° </span>
-      <span class="five-day-forecast-max"> 24° </span>
-      </div>`;
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
-
-function getForecastData(city) {
-  let apiEndpoint = "https://api.shecodes.io/weather/v1/forecast";
-  let apiKey = "32c4701d65b6ftd8c03oeb034a7b3869";
-  let apiUrl = `${apiEndpoint}?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
 }
 
 function displayFahrenheit(event) {
@@ -149,5 +150,3 @@ let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", getCurrentPosition);
 
 getWeatherData("Melbourne");
-
-getForecastData();

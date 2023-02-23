@@ -69,7 +69,7 @@ function displayForecast(response) {
       <img src="${forecastDay.condition.icon_url}" class="forecast-icon"> <br />
       <span class="five-day-forecast-min"> ${Math.round(
         forecastDay.temperature.minimum
-      )}° </span>
+      )}° </span> / 
       <span class="five-day-forecast-max"> ${Math.round(
         forecastDay.temperature.maximum
       )}° </span>

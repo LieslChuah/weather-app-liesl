@@ -22,6 +22,10 @@ function formatDate(timestamp) {
     let body = document.querySelector("body");
     body.classList.add("day");
   }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
   let dayDate = date.getDate();
   let months = [
     "January",
@@ -41,7 +45,7 @@ function formatDate(timestamp) {
   let year = date.getFullYear();
 
   return ` ${day} ${dayDate} ${month} ${year}<br />
-  Last updated at ${hours}:00`;
+  Last updated at ${hours}:${minutes}`;
 }
 
 function formatDay(timestamp) {

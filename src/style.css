@@ -16,15 +16,16 @@ a {
   text-decoration: none;
 }
 body {
-  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 body.day {
-  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/068/775/original/sky.jpg?1677154342);
+  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/069/147/original/day_sky.jpg?1677384868);
+  background-position: center;
 }
 body.night {
-  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/068/772/original/night.jpg?1677152921);
+  background-image: url(https://s3.amazonaws.com/shecodesio-production/uploads/files/000/069/150/original/night_bulbs.jpg?1677385835);
+  background-position: middle;
 }
 .night-pic {
   position: absolute;

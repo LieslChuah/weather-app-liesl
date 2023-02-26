@@ -131,6 +131,7 @@ function getSearchedCity(event) {
   let searchBarInput = document.querySelector("#search-bar-input").value;
   if (searchBarInput) {
     getWeatherData(searchBarInput);
+    document.querySelector("#search-bar-input").value = null;
   } else {
     alert("Please enter a city");
   }
